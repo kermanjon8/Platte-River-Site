@@ -432,14 +432,7 @@ a.tile:focus-visible{outline:3px solid var(--wheat);outline-offset:3px}
    ================================================================= */
 
 const ADS = [
-  {
-    tier:  "promo",
-    name:  "Test Ad",
-    img:   "/ads/test-ad.png",
-    link:  "https://example.com",
-    start: "2026-08-01",
-    end:   "2026-12-31"
-  },
+  // (no live ads yet — the board opens fresh. Add your first one above.)
 ];
 
 /* -----------------------------------------------------------------
@@ -468,41 +461,55 @@ function isLive(ad){
 }
 
 const order = { spotlight:0, promo:1, logo:2 };
-const live = ADS.filter(isLive)
-                .sort((a,b)=> (order[a.tier]??9) - (order[b.tier]??9));
+const live = ADS.filter(isLive);
 
-const grid = document.getElementById("grid");
+/* Build one combined list of tiles: real ads AND open spots together,
+   then sort by size. Keeping them in one list is what stops the grid
+   from leaving holes (a full-width spot can't sit beside a half-width one). */
+const tiles = [];
 
-// filled ads
-live.forEach(ad=>{
-  const a = document.createElement("a");
-  a.className = "tile " + ad.tier;
-  a.href = ad.link || "#";
-  a.target = "_blank"; a.rel = "noopener";
-  a.setAttribute("aria-label", ad.name || "Advertiser");
-  a.innerHTML =
-    '<span class="tag">'+ ad.tier +'</span>' +
-    '<img src="'+ ad.img +'" alt="'+ (ad.name||"Advertiser") +'">';
-  grid.appendChild(a);
-});
+live.forEach(ad => tiles.push({ tier: ad.tier, ad: ad }));
 
-// available spots — fill remaining inventory per tier
 ["spotlight","promo","logo"].forEach(tier=>{
   const used = live.filter(a=>a.tier===tier).length;
   const openCount = Math.max(0, (OPEN_SLOTS[tier]||0) - used);
-  for(let i=0;i<openCount;i++){
-    const a = document.createElement("a");
-    a.className = "tile open " + tier;
-    a.href = CONTACT + "?tier=" + tier;
-    a.setAttribute("aria-label", "Available "+tier+" spot, claim it");
+  for(let i=0;i<openCount;i++) tiles.push({ tier: tier, ad: null });
+});
+
+tiles.sort((a,b)=>{
+  const d = (order[a.tier]??9) - (order[b.tier]??9);
+  if (d !== 0) return d;
+  // within a size, filled ads sit before open spots
+  return (a.ad ? 0 : 1) - (b.ad ? 0 : 1);
+});
+
+const grid = document.getElementById("grid");
+
+tiles.forEach(t=>{
+  const a = document.createElement("a");
+
+  if (t.ad) {                                   // ---- a real advertiser ----
+    a.className = "tile " + t.tier;
+    a.href = t.ad.link || "#";
+    a.target = "_blank"; a.rel = "noopener";
+    a.setAttribute("aria-label", t.ad.name || "Advertiser");
+    a.innerHTML =
+      '<span class="tag">'+ t.tier +'</span>' +
+      '<img src="'+ t.ad.img +'" alt="'+ (t.ad.name||"Advertiser") +'">';
+
+  } else {                                      // ---- an open spot ----
+    a.className = "tile open " + t.tier;
+    a.href = CONTACT + "?tier=" + t.tier;
+    a.setAttribute("aria-label", "Available "+t.tier+" spot, claim it");
     a.innerHTML =
       '<span class="open-inner">' +
-        '<span class="price">'+ PRICE[tier] +'<span style="font-size:.5em;font-weight:600">/mo</span></span>' +
-        '<span class="size">'+ tier +' · '+ SIZE[tier] +'</span>' +
+        '<span class="price">'+ PRICE[t.tier] +'<span style="font-size:.5em;font-weight:600">/mo</span></span>' +
+        '<span class="size">'+ t.tier +' · '+ SIZE[t.tier] +'</span>' +
         '<span class="avail">Available — claim it</span>' +
       '</span>';
-    grid.appendChild(a);
   }
+
+  grid.appendChild(a);
 });
 </script>
 
