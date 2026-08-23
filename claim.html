@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claim a Spot | The Kearney Insider</title>
+<meta name="description" content="Reserve your spot on the online board. Tell us about your business and upload your ad.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --river:#0E3A46; --river-deep:#0A2A33; --river-ink:#072027;
+  --wheat:#E4A33A; --wheat-soft:#F3D08A;
+  --paper:#F4F1E9; --card:#FBF9F3;
+  --ink:#17201F; --ink-soft:#52605E;
+  --line:rgba(14,58,70,.16); --line-strong:rgba(14,58,70,.32);
+  --f-display:"Anton",Impact,sans-serif;
+  --f-body:"Libre Franklin",system-ui,sans-serif;
+  --wrap:780px;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--f-body);color:var(--ink);background:var(--paper);line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+a{color:inherit}
+
+/* ---------- header ---------- */
+.top{background:var(--river);color:var(--paper);padding:22px 0 34px}
+.back{font-size:.82rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--wheat-soft);text-decoration:none;display:inline-block;margin-bottom:20px}
+.back:hover{color:var(--wheat)}
+.top h1{font-family:var(--f-display);text-transform:uppercase;line-height:.95;
+  font-size:clamp(2rem,6vw,3.2rem);margin:0 0 12px}
+.top h1 em{font-style:normal;color:var(--wheat)}
+.top p{color:rgba(244,241,233,.85);margin:0;max-width:56ch;font-size:1.02rem}
+
+/* ---------- form ---------- */
+.formwrap{padding:40px 0 60px}
+fieldset{border:0;padding:0;margin:0 0 34px}
+legend{
+  font-family:var(--f-display);text-transform:uppercase;color:var(--river-deep);
+  font-size:1.35rem;letter-spacing:.01em;margin-bottom:4px;padding:0;
+}
+.legend-note{font-size:.9rem;color:var(--ink-soft);margin:0 0 18px}
+
+.field{margin-bottom:18px}
+label{display:block;font-weight:700;font-size:.9rem;margin-bottom:6px;color:var(--river-deep)}
+label .req{color:#B4432B}
+.hint{font-weight:500;font-size:.82rem;color:var(--ink-soft);margin-top:4px}
+
+input[type=text],input[type=email],input[type=tel],input[type=url],select,textarea{
+  width:100%;padding:12px 13px;font-family:var(--f-body);font-size:1rem;color:var(--ink);
+  background:var(--card);border:1px solid var(--line-strong);border-radius:3px;
+}
+textarea{min-height:96px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:3px solid var(--wheat);outline-offset:1px;border-color:var(--river)}
+
+/* radio cards */
+.choices{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.choice{position:relative}
+.choice input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.choice span{
+  display:block;padding:14px 12px;border:1px solid var(--line-strong);border-radius:3px;
+  background:var(--card);cursor:pointer;transition:border-color .15s,background .15s;
+}
+.choice .nm{font-family:var(--f-display);text-transform:uppercase;font-size:1.1rem;color:var(--river-deep);display:block}
+.choice .pr{font-weight:800;font-size:1rem;display:block;margin-top:2px}
+.choice .dm{font-size:.74rem;color:var(--ink-soft);letter-spacing:.06em;text-transform:uppercase;font-weight:700;display:block;margin-top:3px}
+.choice input:checked + span{border-color:var(--river);background:#fff;box-shadow:inset 0 0 0 2px var(--river)}
+.choice input:focus-visible + span{outline:3px solid var(--wheat);outline-offset:2px}
+
+/* file input */
+input[type=file]{
+  width:100%;padding:14px;font-family:var(--f-body);font-size:.94rem;
+  background:var(--card);border:1px dashed var(--line-strong);border-radius:3px;cursor:pointer;
+}
+input[type=file]:focus{outline:3px solid var(--wheat)}
+
+/* checkbox row */
+.check{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
+.check input{margin-top:4px;width:17px;height:17px;flex:0 0 auto;accent-color:var(--river)}
+.check label{font-weight:500;font-size:.95rem;margin:0;color:var(--ink)}
+
+/* terms box */
+.terms-box{
+  background:var(--card);border-left:3px solid var(--wheat);
+  padding:16px 18px;font-size:.88rem;color:var(--ink-soft);margin-bottom:26px;line-height:1.65;
+}
+.terms-box strong{color:var(--river-deep)}
+
+.submit{
+  background:var(--wheat);color:var(--river-ink);border:0;border-radius:2px;
+  font-family:var(--f-body);font-weight:800;font-size:1.05rem;padding:16px 30px;
+  cursor:pointer;transition:background .18s,transform .1s;
+}
+.submit:hover{background:var(--wheat-soft)}
+.submit:active{transform:translateY(1px)}
+.submit:focus-visible{outline:3px solid var(--river);outline-offset:3px}
+.after-submit{font-size:.86rem;color:var(--ink-soft);margin-top:12px}
+
+/* honeypot */
+.hp{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
+
+/* ---------- footer ---------- */
+.foot{background:var(--river-ink);color:rgba(244,241,233,.72);padding:30px 0;font-size:.88rem}
+.foot a{color:var(--wheat-soft);text-decoration:none;font-weight:600}
+.foot a:hover{color:var(--wheat)}
+
+@media (max-width:620px){
+  .choices{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="back" href="/">&larr; Back to the board</a>
+    <h1>Claim <em>your spot.</em></h1>
+    <p>Fill this out and we'll get back to you with availability and payment details.
+       Takes about two minutes. Nothing is charged here.</p>
+  </div>
+</header>
+
+<main class="formwrap">
+  <div class="wrap">
+
+    <!-- =====================================================
+         NETLIFY FORM
+         - data-netlify="true"  -> Netlify captures submissions
+         - enctype="multipart/form-data" -> allows the file upload
+         - action="/thanks" -> sends them to thanks.html after
+         View submissions at: Netlify > your project > Forms
+         ===================================================== -->
+    <form name="claim-a-spot"
+          method="POST"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+          enctype="multipart/form-data"
+          action="/thanks">
+
+      <input type="hidden" name="form-name" value="claim-a-spot">
+      <p class="hp">
+        <label>Leave this blank: <input name="bot-field"></label>
+      </p>
+
+      <!-- ============ ABOUT THE BUSINESS ============ -->
+      <fieldset>
+        <legend>About your business</legend>
+        <p class="legend-note">The basics, so we know who we're talking to.</p>
+
+        <div class="field">
+          <label for="business">Business name <span class="req">*</span></label>
+          <input type="text" id="business" name="Business name" required>
+        </div>
+
+        <div class="field">
+          <label for="contact">Your name <span class="req">*</span></label>
+          <input type="text" id="contact" name="Contact name" required>
+        </div>
+
+        <div class="field">
+          <label for="town">Town <span class="req">*</span></label>
+          <select id="town" name="Town" required>
+            <option value="">Choose your town</option>
+            <option>Kearney</option>
+            <option>Grand Island</option>
+            <option>Hastings</option>
+            <option>Holdrege</option>
+            <option>Lexington</option>
+            <option>Other / nearby</option>
+          </select>
+          <p class="hint">Helps us know where to point the audience.</p>
+        </div>
+
+        <div class="field">
+          <label for="category">What does your business do? <span class="req">*</span></label>
+          <input type="text" id="category" name="Category" required
+                 placeholder="Roofing, insurance, detailing, dental, etc.">
+        </div>
+      </fieldset>
+
+      <!-- ============ CONTACT ============ -->
+      <fieldset>
+        <legend>How to reach you</legend>
+        <p class="legend-note">We'll confirm your spot and send payment details here.</p>
+
+        <div class="field">
+          <label for="email">Email <span class="req">*</span></label>
+          <input type="email" id="email" name="Email" required>
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone <span class="req">*</span></label>
+          <input type="tel" id="phone" name="Phone" required>
+        </div>
+
+        <div class="field">
+          <label for="link">Where should your ad send people? <span class="req">*</span></label>
+          <input type="text" id="link" name="Destination link" required
+                 placeholder="yourbusiness.com or your Facebook page">
+          <p class="hint">This is the link people land on when they click your ad.</p>
+        </div>
+      </fieldset>
+
+      <!-- ============ THE SPOT ============ -->
+      <fieldset>
+        <legend>Pick your spot</legend>
+        <p class="legend-note">Not sure? Pick the closest one. We'll sort it out on the call.</p>
+
+        <div class="field">
+          <div class="choices">
+            <div class="choice">
+              <input type="radio" id="t-logo" name="Spot size" value="Logo Spot - $25/mo" required>
+              <span>
+                <span class="nm">Logo</span>
+                <span class="pr">$25/mo</span>
+                <span class="dm">400 × 400</span>
+              </span>
+            </div>
+            <div class="choice">
+              <input type="radio" id="t-promo" name="Spot size" value="Promo Spot - $50/mo">
+              <span>
+                <span class="nm">Promo</span>
+                <span class="pr">$50/mo</span>
+                <span class="dm">800 × 400</span>
+              </span>
+            </div>
+            <div class="choice">
+              <input type="radio" id="t-spot" name="Spot size" value="Spotlight - $100/mo">
+              <span>
+                <span class="nm">Spotlight</span>
+                <span class="pr">$100/mo</span>
+                <span class="dm">1200 × 500</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="length">How long do you want to run?</label>
+          <select id="length" name="Run length">
+            <option>1 month</option>
+            <option>3 months</option>
+            <option>6 months</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+      </fieldset>
+
+      <!-- ============ THE AD ============ -->
+      <fieldset>
+        <legend>Your ad</legend>
+        <p class="legend-note">Running an actual promotion gets far more clicks than a logo alone.</p>
+
+        <div class="field">
+          <label>What are you running?</label>
+          <div class="check">
+            <input type="checkbox" id="a1" name="Ad plan" value="I have my own ad ready">
+            <label for="a1">I have my own ad ready to go</label>
+          </div>
+          <div class="check">
+            <input type="checkbox" id="a2" name="Ad plan" value="I want to run a promotion">
+            <label for="a2">I want to run a promotion or special offer</label>
+          </div>
+          <div class="check">
+            <input type="checkbox" id="a3" name="Ad plan" value="I need help designing it">
+            <label for="a3">I need help designing it</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="promo">What's the offer?</label>
+          <textarea id="promo" name="Promotion details"
+                    placeholder="10% off first service, free estimates in October, buy one get one, etc."></textarea>
+          <p class="hint">Skip this if you're just running your logo.</p>
+        </div>
+
+        <div class="field">
+          <label for="upload">Upload your ad or logo</label>
+          <input type="file" id="upload" name="Ad file" accept="image/*,.pdf">
+          <p class="hint">JPG, PNG, or PDF. Don't worry about exact sizing yet, we'll handle that.</p>
+        </div>
+
+        <div class="field">
+          <label for="notes">Anything else we should know?</label>
+          <textarea id="notes" name="Notes"
+                    placeholder="Timing, questions, competitors you'd rather not sit next to, whatever."></textarea>
+        </div>
+      </fieldset>
+
+      <div class="terms-box">
+        <strong>What happens next:</strong> we'll reach out to confirm availability and go over
+        pricing. Spots are paid before they go live, and every ad is reviewed before it's posted.
+        We reserve the right to reject or remove any ad at our discretion. All spots are prepaid
+        and are non-refundable once your ad is live.
+      </div>
+
+      <button type="submit" class="submit">Send my request</button>
+      <p class="after-submit">No payment is taken on this page.</p>
+
+    </form>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    Questions? <a href="mailto:PlatteRiverMarketing@outlook.com">PlatteRiverMarketing@outlook.com</a>
+    &nbsp;·&nbsp; <a href="tel:19083704160">908-370-4160</a>
+  </div>
+</footer>
+
+<script>
+/* Pre-select the spot size if they came from a specific tile,
+   e.g. /claim?tier=promo  */
+const t = new URLSearchParams(location.search).get("tier");
+if (t) {
+  const map = { logo:"t-logo", promo:"t-promo", spotlight:"t-spot" };
+  const el = document.getElementById(map[t]);
+  if (el) el.checked = true;
+}
+</script>
+
+</body>
+</html>

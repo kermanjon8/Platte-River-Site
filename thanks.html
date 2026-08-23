@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Request received | The Kearney Insider</title>
+<meta name="robots" content="noindex">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --river:#0E3A46; --river-ink:#072027;
+  --wheat:#E4A33A; --wheat-soft:#F3D08A;
+  --paper:#F4F1E9;
+  --f-display:"Anton",Impact,sans-serif;
+  --f-body:"Libre Franklin",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;font-family:var(--f-body);background:var(--river);color:var(--paper);
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:620px;margin:0 auto;padding:56px 24px;text-align:center}
+.mark{
+  width:74px;height:74px;margin:0 auto 26px;border-radius:50%;
+  border:2.5px dashed var(--wheat-soft);display:flex;align-items:center;justify-content:center;
+}
+.mark svg{width:34px;height:34px;stroke:var(--wheat);fill:none;stroke-width:2.6;
+  stroke-linecap:round;stroke-linejoin:round}
+h1{font-family:var(--f-display);text-transform:uppercase;line-height:.96;
+  font-size:clamp(2.1rem,7vw,3.3rem);margin:0 0 16px}
+h1 em{font-style:normal;color:var(--wheat)}
+p{color:rgba(244,241,233,.86);margin:0 auto 14px;max-width:46ch;font-size:1.04rem}
+.contact{margin-top:26px;font-size:.95rem;color:rgba(244,241,233,.7)}
+.contact a{color:var(--wheat-soft);font-weight:600;text-decoration:none}
+.contact a:hover{color:var(--wheat)}
+.btn{
+  display:inline-block;margin-top:30px;background:var(--wheat);color:var(--river-ink);
+  font-weight:800;padding:13px 24px;border-radius:2px;text-decoration:none;
+}
+.btn:hover{background:var(--wheat-soft)}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M4 12.5l5.5 5.5L20 6.5"/></svg>
+    </div>
+
+    <h1>Got it. <em>Talk soon.</em></h1>
+
+    <p>Your request is in. We'll reach out within a business day to confirm what's
+       available and walk through pricing.</p>
+    <p>If you uploaded an ad, we've got that too. No payment is due until your spot
+       is confirmed.</p>
+
+    <p class="contact">
+      Need us sooner?<br>
+      <a href="tel:19083704160">908-370-4160</a> &nbsp;·&nbsp;
+      <a href="mailto:PlatteRiverMarketing@outlook.com">PlatteRiverMarketing@outlook.com</a>
+    </p>
+
+    <a class="btn" href="/">Back to the board</a>
+  </div>
+</body>
+</html>

@@ -309,7 +309,7 @@ a.tile:focus-visible{outline:3px solid var(--wheat);outline-offset:3px}
        Island to Hastings to Holdrege. Pick a size, run a promotion, and reach the
        region without the mailer price tag.</p>
     <div class="cta-row">
-      <a class="btn btn-primary" href="mailto:PlatteRiverMarketing@outlook.com?subject=I%20want%20a%20spot%20on%20the%20board">Claim a spot</a>
+      <a class="btn btn-primary" href="/claim">Claim a spot</a>
       <a class="btn btn-ghost" href="tel:19083704160">Call 908-370-4160</a>
     </div>
   </div>
@@ -446,7 +446,7 @@ const OPEN_SLOTS = { spotlight: 1, promo: 2, logo: 4 };
    ----------------------------------------------------------------- */
 const PRICE = { spotlight: "$100", promo: "$50", logo: "$25" };
 const SIZE  = { spotlight: "1200×500", promo: "800×400", logo: "400×400" };
-const CONTACT = "mailto:PlatteRiverMarketing@outlook.com?subject=I%20want%20a%20spot%20on%20the%20board";
+const CONTACT = "/claim";   // open tiles append ?tier=... so the form pre-selects the size
 
 /* ===== rendering (you shouldn't need to touch below here) ======== */
 document.getElementById("yr").textContent = new Date().getFullYear();
@@ -486,8 +486,8 @@ live.forEach(ad=>{
   for(let i=0;i<openCount;i++){
     const a = document.createElement("a");
     a.className = "tile open " + tier;
-    a.href = CONTACT;
-    a.setAttribute("aria-label", "Available "+tier+" spot — claim it");
+    a.href = CONTACT + "?tier=" + tier;
+    a.setAttribute("aria-label", "Available "+tier+" spot, claim it");
     a.innerHTML =
       '<span class="open-inner">' +
         '<span class="price">'+ PRICE[tier] +'<span style="font-size:.5em;font-weight:600">/mo</span></span>' +
