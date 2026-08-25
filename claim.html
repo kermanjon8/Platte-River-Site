@@ -26,6 +26,15 @@ body{margin:0;font-family:var(--f-body);color:var(--ink);background:var(--paper)
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
 a{color:inherit}
 
+/* ---------- nav ---------- */
+.nav{background:var(--river-ink);border-bottom:1px solid rgba(244,241,233,.12)}
+.nav .wrap{display:flex;align-items:center;gap:26px;padding-top:13px;padding-bottom:13px;flex-wrap:wrap;max-width:1060px}
+.nav a{color:rgba(244,241,233,.72);text-decoration:none;font-size:.82rem;font-weight:700;
+  letter-spacing:.13em;text-transform:uppercase}
+.nav a:hover{color:var(--wheat)}
+.nav a.on{color:var(--wheat)}
+.nav .sp{margin-left:auto}
+
 /* ---------- header ---------- */
 .top{background:var(--river);color:var(--paper);padding:22px 0 34px}
 .back{font-size:.82rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
@@ -121,6 +130,15 @@ input[type=file]:focus{outline:3px solid var(--wheat)}
 </style>
 </head>
 <body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="/">The Board</a>
+    <a href="/deals">Deals</a>
+    <a href="/rounds">Past Rounds</a>
+    <a href="/claim" class="on sp">Claim a Spot</a>
+  </div>
+</nav>
 
 <header class="top">
   <div class="wrap">

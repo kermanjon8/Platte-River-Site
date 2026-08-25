@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Past Rounds | The Kearney Insider</title>
+<meta name="description" content="Every round of The Kearney Insider and the local businesses that ran in it.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --river:#0E3A46; --river-deep:#0A2A33; --river-ink:#072027;
+  --wheat:#E4A33A; --wheat-soft:#F3D08A;
+  --paper:#F4F1E9; --card:#FBF9F3;
+  --ink:#17201F; --ink-soft:#52605E;
+  --line:rgba(14,58,70,.16); --line-strong:rgba(14,58,70,.32);
+  --shadow:0 1px 0 rgba(14,58,70,.06), 0 12px 30px -18px rgba(7,32,39,.45);
+  --f-display:"Anton",Impact,sans-serif;
+  --f-body:"Libre Franklin",system-ui,sans-serif;
+  --wrap:1060px;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--f-body);color:var(--ink);background:var(--paper);
+  line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+
+/* ---------- nav ---------- */
+.nav{background:var(--river-ink);border-bottom:1px solid rgba(244,241,233,.12)}
+.nav .wrap{display:flex;align-items:center;gap:26px;padding-top:13px;padding-bottom:13px;flex-wrap:wrap}
+.nav a{color:rgba(244,241,233,.72);text-decoration:none;font-size:.82rem;font-weight:700;
+  letter-spacing:.13em;text-transform:uppercase}
+.nav a:hover{color:var(--wheat)}
+.nav a.on{color:var(--wheat)}
+.nav .sp{margin-left:auto}
+
+/* ---------- header ---------- */
+.top{background:var(--river);color:var(--paper);padding:34px 0 42px}
+.top .kicker{font-size:.72rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--wheat-soft)}
+.top h1{font-family:var(--f-display);text-transform:uppercase;line-height:.95;
+  font-size:clamp(2.1rem,6vw,3.6rem);margin:.15em 0 14px}
+.top h1 em{font-style:normal;color:var(--wheat)}
+.top p{color:rgba(244,241,233,.86);margin:0;max-width:58ch;font-size:1.04rem}
+
+/* ---------- rounds ---------- */
+.rounds{padding:44px 0 20px}
+.round{
+  background:var(--card);border:1px solid var(--line);border-radius:4px;
+  box-shadow:var(--shadow);overflow:hidden;margin-bottom:26px;
+}
+.round-head{
+  display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;
+  padding:20px 24px;border-bottom:2px dashed var(--line-strong);
+}
+.round-num{font-family:var(--f-display);text-transform:uppercase;font-size:1.9rem;
+  color:var(--river-deep);line-height:1}
+.round-date{font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-soft)}
+.round-reach{
+  margin-left:auto;background:var(--river);color:var(--paper);
+  font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  padding:6px 11px;border-radius:2px;
+}
+.round-body{padding:22px 24px 24px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:26px}
+.round-body.noimg{grid-template-columns:1fr}
+
+.shot{border:1px solid var(--line-strong);border-radius:3px;overflow:hidden;background:#fff}
+.shot img{width:100%}
+
+.adv h3{
+  font-size:.72rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--river);margin:0 0 12px;
+}
+.adv ul{list-style:none;margin:0;padding:0}
+.adv li{
+  display:flex;justify-content:space-between;gap:14px;align-items:baseline;
+  padding:9px 0;border-bottom:1px solid var(--line);
+}
+.adv li:last-child{border-bottom:0}
+.adv .biz{font-weight:700;color:var(--river-deep)}
+.adv .cat{font-size:.78rem;color:var(--ink-soft);text-transform:uppercase;
+  letter-spacing:.08em;font-weight:700;text-align:right;flex:0 0 auto}
+
+.empty{
+  border:1px dashed var(--line-strong);border-radius:3px;padding:26px;text-align:center;
+  color:var(--ink-soft);font-size:.92rem;
+  background:repeating-linear-gradient(135deg, rgba(14,58,70,.03) 0 12px, transparent 12px 24px);
+}
+
+/* ---------- cta ---------- */
+.cta{background:var(--river-deep);color:var(--paper);padding:48px 0;margin-top:22px}
+.cta h2{font-family:var(--f-display);text-transform:uppercase;font-size:clamp(1.7rem,4.4vw,2.6rem);
+  line-height:.98;margin:0 0 12px}
+.cta h2 em{font-style:normal;color:var(--wheat)}
+.cta p{color:rgba(244,241,233,.85);max-width:56ch;margin:0 0 22px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:.98rem;
+  padding:13px 22px;border-radius:2px;text-decoration:none;border:2px solid transparent}
+.btn-primary{background:var(--wheat);color:var(--river-ink)}
+.btn-primary:hover{background:var(--wheat-soft)}
+.btn-ghost{border-color:rgba(244,241,233,.5);color:var(--paper);margin-left:10px}
+.btn-ghost:hover{border-color:var(--wheat);color:var(--wheat)}
+
+/* ---------- footer ---------- */
+.foot{background:var(--river-ink);color:rgba(244,241,233,.72);padding:30px 0;font-size:.88rem}
+.foot a{color:var(--wheat-soft);text-decoration:none;font-weight:600}
+.foot a:hover{color:var(--wheat)}
+
+@media (max-width:760px){
+  .round-body{grid-template-columns:1fr}
+  .round-reach{margin-left:0}
+  .btn-ghost{margin-left:0;margin-top:10px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="/">The Board</a>
+    <a href="/deals">Deals</a>
+    <a href="/rounds" class="on">Past Rounds</a>
+    <a href="/claim" class="sp">Claim a Spot</a>
+  </div>
+</nav>
+
+<header class="top">
+  <div class="wrap">
+    <span class="kicker">The archive</span>
+    <h1>Every round, <em>every business.</em></h1>
+    <p>The Kearney Insider mails to 3,000 homes in Kearney. Here's every round we've
+       sent and the local businesses that ran in it. One business per category, every time.</p>
+  </div>
+</header>
+
+<main class="rounds">
+  <div class="wrap" id="rounds"><!-- rendered below --></div>
+</main>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>Want the next one? <em>Categories go fast.</em></h2>
+    <p>Only one business per category runs in each mailing. Once a category is taken
+       for a round, that's it until the next one.</p>
+    <a class="btn btn-primary" href="/claim">Get on the next round</a>
+    <a class="btn btn-ghost" href="tel:19083704160">Call 908-370-4160</a>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    Platte River Marketing &nbsp;·&nbsp;
+    <a href="mailto:PlatteRiverMarketing@outlook.com">PlatteRiverMarketing@outlook.com</a>
+    &nbsp;·&nbsp; <a href="tel:19083704160">908-370-4160</a>
+  </div>
+</footer>
+
+<script>
+/* =================================================================
+   EDIT YOUR ROUNDS HERE
+   -----------------------------------------------------------------
+   Newest round goes FIRST in the list.
+
+   number    : "Round 3"        whatever you want to call it
+   date      : "August 2026"    when it mailed
+   reach     : "3,000 homes"    leave "" to hide the badge
+   image     : "/rounds/round-3.jpg"   a photo/scan of the postcard.
+               Leave as ""  if you don't have one yet, the layout adapts.
+   advertisers: list of { name, category }
+
+   To add a photo of a card: upload it to a /rounds/ folder in the repo
+   (same way as /ads/), then put the path here.
+   ================================================================= */
+
+const ROUNDS = [
+  {
+    number: "Round 3",
+    date:   "August 2026",
+    reach:  "3,000 homes",
+    image:  "",
+    advertisers: [
+      // { name: "Business Name", category: "Category" },
+    ]
+  },
+  {
+    number: "Round 2",
+    date:   "",
+    reach:  "3,000 homes",
+    image:  "",
+    advertisers: []
+  },
+  {
+    number: "Round 1",
+    date:   "",
+    reach:  "3,000 homes",
+    image:  "",
+    advertisers: []
+  }
+];
+
+/* ===== rendering (no need to touch below) ===== */
+const box = document.getElementById("rounds");
+
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+ROUNDS.forEach(r=>{
+  const hasImg = r.image && r.image.trim() !== "";
+  const list = (r.advertisers || []);
+
+  const advHTML = list.length
+    ? '<ul>' + list.map(a =>
+        '<li><span class="biz">'+ esc(a.name) +'</span>' +
+        (a.category ? '<span class="cat">'+ esc(a.category) +'</span>' : '') +
+        '</li>').join('') + '</ul>'
+    : '<div class="empty">Advertiser list coming soon.</div>';
+
+  const el = document.createElement("article");
+  el.className = "round";
+  el.innerHTML =
+    '<div class="round-head">' +
+      '<span class="round-num">'+ esc(r.number) +'</span>' +
+      (r.date ? '<span class="round-date">'+ esc(r.date) +'</span>' : '') +
+      (r.reach ? '<span class="round-reach">'+ esc(r.reach) +'</span>' : '') +
+    '</div>' +
+    '<div class="round-body'+ (hasImg ? '' : ' noimg') +'">' +
+      (hasImg ? '<div class="shot"><img src="'+ esc(r.image) +'" alt="'+ esc(r.number) +' postcard"></div>' : '') +
+      '<div class="adv"><h3>Who ran in this round</h3>'+ advHTML +'</div>' +
+    '</div>';
+
+  box.appendChild(el);
+});
+</script>
+
+</body>
+</html>

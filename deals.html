@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Special Deals | The Kearney Insider</title>
+<meta name="description" content="Current deals and offers from local central Nebraska businesses.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --river:#0E3A46; --river-deep:#0A2A33; --river-ink:#072027;
+  --wheat:#E4A33A; --wheat-soft:#F3D08A;
+  --flag:#C0402A; --flag-deep:#9E3320;
+  --paper:#F4F1E9; --card:#FBF9F3;
+  --ink:#17201F; --ink-soft:#52605E;
+  --line:rgba(14,58,70,.16); --line-strong:rgba(14,58,70,.32);
+  --shadow:0 1px 0 rgba(14,58,70,.06), 0 12px 30px -18px rgba(7,32,39,.45);
+  --f-display:"Anton",Impact,sans-serif;
+  --f-body:"Libre Franklin",system-ui,sans-serif;
+  --wrap:1060px;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--f-body);color:var(--ink);background:var(--paper);
+  line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+
+/* ---------- nav ---------- */
+.nav{background:var(--river-ink);border-bottom:1px solid rgba(244,241,233,.12)}
+.nav .wrap{display:flex;align-items:center;gap:24px;padding-top:13px;padding-bottom:13px;flex-wrap:wrap}
+.nav a{color:rgba(244,241,233,.72);text-decoration:none;font-size:.82rem;font-weight:700;
+  letter-spacing:.13em;text-transform:uppercase}
+.nav a:hover{color:var(--wheat)}
+.nav a.on{color:var(--wheat)}
+.nav .sp{margin-left:auto}
+
+/* ---------- header ---------- */
+.top{background:var(--flag);color:#fff;padding:34px 0 42px}
+.top .kicker{font-size:.72rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(255,255,255,.8)}
+.top h1{font-family:var(--f-display);text-transform:uppercase;line-height:.95;
+  font-size:clamp(2.1rem,6vw,3.6rem);margin:.15em 0 14px;color:#fff}
+.top p{color:rgba(255,255,255,.92);margin:0;max-width:56ch;font-size:1.04rem}
+
+/* ---------- deals ---------- */
+.deals{padding:42px 0 12px}
+.deal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.deal{
+  background:var(--card);border:1px solid var(--line);border-radius:4px;
+  box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;
+  text-decoration:none;color:inherit;
+  transition:transform .14s ease,box-shadow .2s ease,border-color .2s ease;
+}
+a.deal:hover{transform:translateY(-3px);box-shadow:0 18px 40px -20px rgba(7,32,39,.55);border-color:var(--line-strong)}
+a.deal:focus-visible{outline:3px solid var(--flag);outline-offset:3px}
+
+.deal .shot img{width:100%;aspect-ratio:2/1;object-fit:cover}
+.deal-inner{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
+.deal .cat{
+  align-self:flex-start;background:var(--river);color:var(--paper);
+  font-size:.63rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  padding:5px 9px;border-radius:2px;margin-bottom:11px;
+}
+.deal .offer{
+  font-family:var(--f-display);text-transform:uppercase;color:var(--flag-deep);
+  font-size:1.6rem;line-height:1.02;margin:0 0 8px;
+}
+.deal .biz{font-weight:800;color:var(--river-deep);font-size:1rem;margin:0 0 8px}
+.deal .details{font-size:.93rem;color:var(--ink-soft);margin:0 0 14px;flex:1}
+.deal .ends{
+  font-size:.72rem;font-weight:800;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--flag);border-top:1px dashed var(--line-strong);padding-top:11px;
+}
+.deal .go{font-weight:800;font-size:.9rem;color:var(--river);margin-top:8px}
+.deal .go::after{content:" →";color:var(--flag)}
+
+/* empty state */
+.none{
+  border:1px dashed var(--line-strong);border-radius:4px;padding:46px 26px;text-align:center;
+  background:repeating-linear-gradient(135deg, rgba(14,58,70,.03) 0 12px, transparent 12px 24px);
+}
+.none h2{font-family:var(--f-display);text-transform:uppercase;color:var(--river-deep);
+  font-size:1.7rem;margin:0 0 8px}
+.none p{color:var(--ink-soft);margin:0 auto;max-width:44ch}
+
+/* ---------- cta ---------- */
+.cta{background:var(--river-deep);color:var(--paper);padding:46px 0;margin-top:34px}
+.cta h2{font-family:var(--f-display);text-transform:uppercase;font-size:clamp(1.7rem,4.4vw,2.5rem);
+  line-height:.98;margin:0 0 12px}
+.cta h2 em{font-style:normal;color:var(--wheat)}
+.cta p{color:rgba(244,241,233,.85);max-width:56ch;margin:0 0 22px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:.98rem;
+  padding:13px 22px;border-radius:2px;text-decoration:none;border:2px solid transparent}
+.btn-primary{background:var(--wheat);color:var(--river-ink)}
+.btn-primary:hover{background:var(--wheat-soft)}
+
+/* ---------- footer ---------- */
+.foot{background:var(--river-ink);color:rgba(244,241,233,.72);padding:30px 0;font-size:.88rem}
+.foot a{color:var(--wheat-soft);text-decoration:none;font-weight:600}
+.foot a:hover{color:var(--wheat)}
+
+@media (max-width:720px){ .deal-grid{grid-template-columns:1fr} }
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="/">The Board</a>
+    <a href="/deals" class="on">Deals</a>
+    <a href="/rounds">Past Rounds</a>
+    <a href="/claim" class="sp">Claim a Spot</a>
+  </div>
+</nav>
+
+<header class="top">
+  <div class="wrap">
+    <span class="kicker">Right now in central Nebraska</span>
+    <h1>Special deals</h1>
+    <p>Real offers from local businesses, updated as they come in. Deals come off
+       this page the day they expire, so everything you see here is live.</p>
+  </div>
+</header>
+
+<main class="deals">
+  <div class="wrap" id="deals"><!-- rendered below --></div>
+</main>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>Run your deal here. <em>Free with any spot.</em></h2>
+    <p>Every business on the board can post an offer to this page at no extra cost.
+       It's the page people actually come here for.</p>
+    <a class="btn btn-primary" href="/claim">Get a spot on the board</a>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    Platte River Marketing &nbsp;·&nbsp;
+    <a href="mailto:PlatteRiverMarketing@outlook.com">PlatteRiverMarketing@outlook.com</a>
+    &nbsp;·&nbsp; <a href="tel:19083704160">908-370-4160</a>
+  </div>
+</footer>
+
+<script>
+/* =================================================================
+   EDIT YOUR DEALS HERE
+   -----------------------------------------------------------------
+   offer    : the headline. Keep it SHORT and punchy. This is the hook.
+   business : who's running it
+   category : small tag above the offer
+   details  : the fine print / what it covers
+   ends     : "YYYY-MM-DD"  the deal auto-disappears after this date
+   link     : where it sends them (use a Bitly link to count clicks)
+   image    : optional. "/deals/name.png" at 800x400. Leave "" to skip.
+
+   EXAMPLE:
+   {
+     offer:    "$50 off any full roof inspection",
+     business: "Andrew's Roofing",
+     category: "Roofing",
+     details:  "New customers only. Mention The Kearney Insider when you call.",
+     ends:     "2026-09-30",
+     link:     "https://bit.ly/andrew-roofing",
+     image:    ""
+   },
+   ================================================================= */
+
+const DEALS = [
+  // Add deals here. Page shows a friendly empty state when this is empty.
+];
+
+/* ===== rendering (no need to touch below) ===== */
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function stillGood(d){
+  if (!d.ends) return true;
+  const now = new Date(); now.setHours(0,0,0,0);
+  return now <= new Date(d.ends);
+}
+
+function prettyDate(s){
+  if(!s) return "";
+  const p = s.split("-");
+  const dt = new Date(+p[0], +p[1]-1, +p[2]);
+  return dt.toLocaleDateString("en-US",{month:"long", day:"numeric"});
+}
+
+const box  = document.getElementById("deals");
+const live = DEALS.filter(stillGood);
+
+if (!live.length){
+  box.innerHTML =
+    '<div class="none">' +
+      '<h2>No deals running right now</h2>' +
+      '<p>Check back soon. New offers from local businesses get posted here as they come in.</p>' +
+    '</div>';
+} else {
+  const grid = document.createElement("div");
+  grid.className = "deal-grid";
+
+  live.forEach(d=>{
+    const a = document.createElement("a");
+    a.className = "deal";
+    a.href = d.link || "#";
+    if (d.link){ a.target = "_blank"; a.rel = "noopener"; }
+    a.setAttribute("aria-label", (d.business||"") + ": " + (d.offer||"deal"));
+
+    a.innerHTML =
+      (d.image ? '<div class="shot"><img src="'+esc(d.image)+'" alt="'+esc(d.business)+'"></div>' : '') +
+      '<div class="deal-inner">' +
+        (d.category ? '<span class="cat">'+esc(d.category)+'</span>' : '') +
+        '<p class="offer">'+ esc(d.offer) +'</p>' +
+        '<p class="biz">'+ esc(d.business) +'</p>' +
+        (d.details ? '<p class="details">'+ esc(d.details) +'</p>' : '<p class="details"></p>') +
+        (d.ends ? '<span class="ends">Ends '+ esc(prettyDate(d.ends)) +'</span>' : '') +
+        '<span class="go">See the deal</span>' +
+      '</div>';
+
+    grid.appendChild(a);
+  });
+
+  box.appendChild(grid);
+}
+</script>
+
+</body>
+</html>
