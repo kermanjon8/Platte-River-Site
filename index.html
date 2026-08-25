@@ -455,7 +455,7 @@ a.tile:focus-visible{outline:3px solid var(--wheat);outline-offset:3px}
         <span class="name">Spotlight</span>
         <span class="dims">1200 × 500 px</span>
         <span class="price">$100<small> / month</small></span>
-        <span class="desc">Top of the board, front and center. One at a time, so it stays a real feature.</span>
+        <span class="desc">Top of the board, front and center. The biggest space we sell, and the first thing anyone sees.</span>
       </div>
     </div>
     <span class="founder">Founder pricing — locked in for early advertisers</span>
@@ -595,14 +595,37 @@ a.tile:focus-visible{outline:3px solid var(--wheat);outline-offset:3px}
    ================================================================= */
 
 const ADS = [
-  // (no live ads yet — the board opens fresh. Add your first one above.)
+  {
+    tier:  "spotlight",
+    name:  "Whistlin' Wolf Bar & Lounge",
+    img:   "/ads/whistlin-wolf.png",
+    link:  "https://www.facebook.com/p/Whistlin-Wolf-Bar-Lounge-61551043024109/",
+    start: "2026-08-25",
+    end:   "2026-09-25"
+  },
+  {
+    tier:  "promo",
+    name:  "Yuletide Lighting Co",
+    img:   "/ads/yuletide-lighting.png",
+    link:  "https://www.facebook.com/p/Yuletide-Lighting-Co-61567820511411/",
+    start: "2026-08-25",
+    end:   "2026-09-25"
+  },
+  {
+    tier:  "logo",
+    name:  "Kearney Dog Bar Training",
+    img:   "/ads/kearney-dog-bar.png",
+    link:  "https://kearneydogbar.com/",
+    start: "2026-08-25",
+    end:   "2026-09-25"
+  },
 ];
 
 /* -----------------------------------------------------------------
    HOW MANY "AVAILABLE" SPOTS TO SHOW per tier when they're open.
    As you fill spots with real ads, the board fills up automatically.
    ----------------------------------------------------------------- */
-const OPEN_SLOTS = { spotlight: 1, promo: 2, logo: 4 };
+const OPEN_SLOTS = { spotlight: 2, promo: 2, logo: 4 };
 
 /* -----------------------------------------------------------------
    PRICES shown on the empty "available" tiles.
