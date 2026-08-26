@@ -149,7 +149,10 @@ a{color:inherit}
   .adv ul{grid-template-columns:1fr}
   .round-reach{margin-left:0}
   .btn-ghost{margin-left:0;margin-top:10px}
-  .side .zoom{display:none}
+  /* on a phone the cards are too dense to read inline, so make the
+     tap-to-enlarge affordance permanently visible instead of hover-only */
+  .side .zoom{opacity:1;font-size:.64rem;padding:4px 8px;bottom:7px;right:7px}
+  .side .lbl{font-size:.56rem;padding:4px 7px;top:7px;left:7px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -294,7 +297,7 @@ function sideHTML(src, label, round){
   return '<a class="side" href="'+esc(src)+'" target="_blank" rel="noopener">' +
            '<span class="lbl">'+ esc(label) +'</span>' +
            '<img src="'+ esc(src) +'" alt="'+ esc(round) +' '+ esc(label) +'" loading="lazy">' +
-           '<span class="zoom">Open full size</span>' +
+           '<span class="zoom">Tap to enlarge</span>' +
          '</a>';
 }
 

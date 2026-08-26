@@ -355,19 +355,36 @@ a.tile:focus-visible{outline:3px solid var(--wheat);outline-offset:3px}
 
 /* =============================================================
    RESPONSIVE
+   -------------------------------------------------------------
+   IMPORTANT: never override a tile's aspect-ratio at a breakpoint.
+   The ratios match the ad image dimensions exactly (spotlight 12/5,
+   promo 2/1, logo 1/1). Changing them makes object-fit:cover crop
+   the advertiser's artwork, which chops off phone numbers.
+   Only the column SPAN should change.
    ============================================================= */
 @media (max-width:820px){
   .grid{grid-template-columns:repeat(2,1fr)}
-  .tile.spotlight{grid-column:span 2;aspect-ratio:2/1}
-  .tile.promo{grid-column:span 2}
+  .tile.spotlight{grid-column:span 2}   /* full width, ratio stays 12/5 */
+  .tile.promo{grid-column:span 2}       /* full width, ratio stays 2/1  */
+  .tile.logo{grid-column:span 1}        /* two across, ratio stays 1/1  */
   .tier-cards{grid-template-columns:1fr}
   .section-head .note{text-align:left}
+
+  /* open placeholders: stack their text so it fits a narrow tile */
+  .tile.open{padding:12px}
+  .tile.open.spotlight .open-inner,
+  .tile.open.promo .open-inner{flex-direction:row}
+  .tile.open .size{font-size:.66rem;letter-spacing:.08em}
+  .tile.open .avail{font-size:.76rem}
 }
 @media (max-width:520px){
-  .grid{grid-template-columns:1fr}
-  .tile.spotlight,.tile.promo,.tile.logo{grid-column:span 1;aspect-ratio:3/2}
   .postmark{width:84px;height:84px}
   .masthead .wrap{padding-bottom:28px}
+  .grid{gap:12px}
+  .tile.open .price{font-size:1.25rem}
+  .tile.open .size{font-size:.6rem}
+  .tile.open .avail{font-size:.7rem}
+  .tile .tag{font-size:.55rem;padding:4px 6px;top:7px;left:7px}
 }
 
 @media (prefers-reduced-motion:reduce){
