@@ -65,25 +65,38 @@ a{color:inherit}
   font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
   padding:6px 11px;border-radius:2px;
 }
-.round-body{padding:22px 24px 24px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:26px}
-.round-body.noimg{grid-template-columns:1fr}
+.round-body{padding:22px 24px 24px}
 
-.shot{border:1px solid var(--line-strong);border-radius:3px;overflow:hidden;background:#fff}
-.shot img{width:100%}
+.cards{display:grid;gap:14px;margin-bottom:24px}
+.side{border:1px solid var(--line-strong);border-radius:3px;overflow:hidden;background:#fff;
+  display:block;text-decoration:none;position:relative}
+.side img{width:100%}
+.side .lbl{
+  position:absolute;top:9px;left:9px;background:var(--river);color:var(--paper);
+  font-size:.62rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  padding:5px 9px;border-radius:2px;
+}
+.side .zoom{
+  position:absolute;bottom:9px;right:9px;background:rgba(7,32,39,.86);color:var(--paper);
+  font-size:.68rem;font-weight:700;letter-spacing:.06em;padding:5px 10px;border-radius:2px;
+  opacity:0;transition:opacity .15s;
+}
+.side:hover .zoom{opacity:1}
+.side:focus-visible{outline:3px solid var(--wheat);outline-offset:2px}
 
 .adv h3{
   font-size:.72rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--river);margin:0 0 12px;
+  color:var(--river);margin:0 0 12px;padding-top:18px;border-top:2px dashed var(--line-strong);
 }
-.adv ul{list-style:none;margin:0;padding:0}
+.adv ul{list-style:none;margin:0;padding:0;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 26px}
 .adv li{
-  display:flex;justify-content:space-between;gap:14px;align-items:baseline;
-  padding:9px 0;border-bottom:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:12px;align-items:baseline;
+  padding:8px 0;border-bottom:1px solid var(--line);
 }
-.adv li:last-child{border-bottom:0}
-.adv .biz{font-weight:700;color:var(--river-deep)}
-.adv .cat{font-size:.78rem;color:var(--ink-soft);text-transform:uppercase;
-  letter-spacing:.08em;font-weight:700;text-align:right;flex:0 0 auto}
+.adv .biz{font-weight:700;color:var(--river-deep);font-size:.95rem}
+.adv .cat{font-size:.72rem;color:var(--ink-soft);text-transform:uppercase;
+  letter-spacing:.06em;font-weight:700;text-align:right;flex:0 0 auto}
 
 .empty{
   border:1px dashed var(--line-strong);border-radius:3px;padding:26px;text-align:center;
@@ -110,9 +123,10 @@ a{color:inherit}
 .foot a:hover{color:var(--wheat)}
 
 @media (max-width:760px){
-  .round-body{grid-template-columns:1fr}
+  .adv ul{grid-template-columns:1fr}
   .round-reach{margin-left:0}
   .btn-ghost{margin-left:0;margin-top:10px}
+  .side .zoom{display:none}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -163,17 +177,14 @@ a{color:inherit}
 /* =================================================================
    EDIT YOUR ROUNDS HERE
    -----------------------------------------------------------------
-   Newest round goes FIRST in the list.
+   Newest round goes FIRST.
 
-   number    : "Round 3"        whatever you want to call it
-   date      : "August 2026"    when it mailed
-   reach     : "3,000 homes"    leave "" to hide the badge
-   image     : "/rounds/round-3.jpg"   a photo/scan of the postcard.
-               Leave as ""  if you don't have one yet, the layout adapts.
+   number : "Round 3"
+   date   : when it mailed. Leave "" to hide.
+   reach  : "3,000 homes". Leave "" to hide the badge.
+   front  : path to one side of the card. "" to skip.
+   back   : path to the other side. "" to skip.
    advertisers: list of { name, category }
-
-   To add a photo of a card: upload it to a /rounds/ folder in the repo
-   (same way as /ads/), then put the path here.
    ================================================================= */
 
 const ROUNDS = [
@@ -181,35 +192,91 @@ const ROUNDS = [
     number: "Round 3",
     date:   "August 2026",
     reach:  "3,000 homes",
-    image:  "",
+    front:  "/rounds/round-3-front.jpg",
+    back:   "/rounds/round-3-back.jpg",
     advertisers: [
-      // { name: "Business Name", category: "Category" },
+      { name: "Heidi Farrell Coaching",        category: "Life Coaching" },
+      { name: "Welcome Back Chiropractic",     category: "Chiropractic" },
+      { name: "Wessels Living History Farm",   category: "Events" },
+      { name: "Ready Roofer",                  category: "Roofing" },
+      { name: "JH Lawn & Services",            category: "Lawn Care" },
+      { name: "All American Sewer & Drain",    category: "Septic & Drain" },
+      { name: "EJ Drywall Contracting",        category: "Drywall" },
+      { name: "Mach 1 Realty",                 category: "Real Estate" },
+      { name: "Nebraska Power Shine",          category: "Exterior Cleaning" },
+      { name: "Kearney Myofunctional Therapy", category: "Therapy" },
+      { name: "4-Square Contracting",          category: "Concrete" },
+      { name: "KO Mobile Hydraulic Repair",    category: "Hydraulic Repair" },
+      { name: "Aaron's Rent to Own",           category: "Rent to Own" },
+      { name: "SMS Sort My Stuff",             category: "Estate Sales" },
+      { name: "Fanatics Sports Bar & Grill",   category: "Sports Bar" }
     ]
   },
   {
     number: "Round 2",
     date:   "",
     reach:  "3,000 homes",
-    image:  "",
-    advertisers: []
+    front:  "/rounds/round-2-front.jpg",
+    back:   "/rounds/round-2-back.jpg",
+    advertisers: [
+      { name: "7S Junk Removal",               category: "Junk Removal" },
+      { name: "Shelter Insurance",             category: "Insurance" },
+      { name: "Kearney Myofunctional Therapy", category: "Therapy" },
+      { name: "Affordable Renovations",        category: "Home Renovation" },
+      { name: "4-Square Contracting",          category: "Concrete" },
+      { name: "RL Earth Moving",               category: "Excavating" },
+      { name: "308 Pest Control",              category: "Pest Control" },
+      { name: "Kearney Dog Bar",               category: "Dog Training" },
+      { name: "The Knot Shop",                 category: "Food & Drink" },
+      { name: "ATD Detailing Co",              category: "Auto Detailing" },
+      { name: "Best Shot Firearms",            category: "Firearms" },
+      { name: "Sayler Screenprinting",         category: "Screen Printing" },
+      { name: "DJ's Tree Trimming & Removal",  category: "Tree Service" },
+      { name: "SMS Sort My Stuff",             category: "Estate Sales" },
+      { name: "Nebraska Power Shine",          category: "Exterior Cleaning" }
+    ]
   },
   {
     number: "Round 1",
     date:   "",
     reach:  "3,000 homes",
-    image:  "",
-    advertisers: []
+    front:  "/rounds/round-1-front.jpg",
+    back:   "/rounds/round-1-back.jpg",
+    advertisers: [
+      { name: "Kearney Marketplace",           category: "Retail" },
+      { name: "Whistlin' Wolf Bar & Lounge",   category: "Bar & Lounge" },
+      { name: "ASI Area Services",             category: "Sewer & Drain" },
+      { name: "Indulge",                       category: "Salon" },
+      { name: "Gleason Welding and Repair",    category: "Welding" },
+      { name: "The Solid Rock",                category: "Bookstore" },
+      { name: "Tuck N Store",                  category: "Storage" },
+      { name: "Clear Sweep Xpress",            category: "Junk Removal" },
+      { name: "Prairie Shine Window Cleaning", category: "Window Cleaning" },
+      { name: "Baker Renovation",              category: "Construction" },
+      { name: "Kearney Dog Bar Training",      category: "Dog Training" },
+      { name: "OTT Concrete Construction",     category: "Concrete" },
+      { name: "Precision Bookkeeping",         category: "Bookkeeping" },
+      { name: "Mapel Tree Service",            category: "Tree Service" }
+    ]
   }
 ];
 
 /* ===== rendering (no need to touch below) ===== */
 const box = document.getElementById("rounds");
 
-function esc(s){ return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function sideHTML(src, label, round){
+  if (!src) return "";
+  return '<a class="side" href="'+esc(src)+'" target="_blank" rel="noopener">' +
+           '<span class="lbl">'+ esc(label) +'</span>' +
+           '<img src="'+ esc(src) +'" alt="'+ esc(round) +' '+ esc(label) +'" loading="lazy">' +
+           '<span class="zoom">Open full size</span>' +
+         '</a>';
+}
 
 ROUNDS.forEach(r=>{
-  const hasImg = r.image && r.image.trim() !== "";
-  const list = (r.advertisers || []);
+  const list = r.advertisers || [];
 
   const advHTML = list.length
     ? '<ul>' + list.map(a =>
@@ -217,6 +284,8 @@ ROUNDS.forEach(r=>{
         (a.category ? '<span class="cat">'+ esc(a.category) +'</span>' : '') +
         '</li>').join('') + '</ul>'
     : '<div class="empty">Advertiser list coming soon.</div>';
+
+  const cards = sideHTML(r.front, "Front", r.number) + sideHTML(r.back, "Back", r.number);
 
   const el = document.createElement("article");
   el.className = "round";
@@ -226,8 +295,8 @@ ROUNDS.forEach(r=>{
       (r.date ? '<span class="round-date">'+ esc(r.date) +'</span>' : '') +
       (r.reach ? '<span class="round-reach">'+ esc(r.reach) +'</span>' : '') +
     '</div>' +
-    '<div class="round-body'+ (hasImg ? '' : ' noimg') +'">' +
-      (hasImg ? '<div class="shot"><img src="'+ esc(r.image) +'" alt="'+ esc(r.number) +' postcard"></div>' : '') +
+    '<div class="round-body">' +
+      (cards ? '<div class="cards">'+ cards +'</div>' : '') +
       '<div class="adv"><h3>Who ran in this round</h3>'+ advHTML +'</div>' +
     '</div>';
 
