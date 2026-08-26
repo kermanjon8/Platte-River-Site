@@ -76,18 +76,28 @@ a{color:inherit}
 .ticker:focus-visible{outline:3px solid var(--wheat);outline-offset:-3px}
 .ticker-track{
   display:flex;width:max-content;
-  animation:tick 26s linear infinite;
+  animation:tick 34s linear infinite;
 }
 .ticker:hover .ticker-track{animation-play-state:paused}
-.ticker-track span{
+/* Each .grp holds a full set of phrases. Two identical sets sit side by side
+   and the track slides exactly one set's width, so the loop never shows a gap.
+   Each set must be wider than the screen, hence several repeats per set. */
+.ticker-track > .grp{display:flex;flex:0 0 auto}
+.ticker-track .item{
   font-family:var(--f-display);text-transform:uppercase;letter-spacing:.03em;
-  font-size:1.02rem;padding:0 22px;white-space:nowrap;display:inline-flex;align-items:center;gap:22px;
+  font-size:1.02rem;padding:0 20px;white-space:nowrap;
+  display:inline-flex;align-items:center;
 }
-.ticker-track span::after{content:"★";font-family:var(--f-body);font-size:.7rem;opacity:.7}
+.ticker-track .item::after{
+  content:"★";font-family:var(--f-body);font-size:.62rem;opacity:.75;
+  margin-left:20px;position:relative;top:-1px;
+}
 @keyframes tick{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
 @media (prefers-reduced-motion:reduce){
-  .ticker-track{animation:none;justify-content:center;width:100%}
-  .ticker-track .dup{display:none}
+  .ticker-track{animation:none;width:100%;justify-content:center}
+  .ticker-track > .grp:last-child{display:none}
+  .ticker-track > .grp .item:not(:first-child){display:none}
+  .ticker-track .item::after{display:none}
 }
 
 /* =============================================================
@@ -349,12 +359,27 @@ a.tile:focus-visible{outline:3px solid var(--wheat);outline-offset:3px}
 <!--  HEADER                                                        -->
 <!-- ============================================================= -->
 <!-- ============ DEALS TICKER ============
-     Edit the text inside BOTH spans below to change the message.
-     They must match, the duplicate is what makes the loop seamless. -->
+     To change the message: edit the FIRST .item, then copy that exact text
+     into every other .item below. All of them must match or the loop
+     will visibly jump when it repeats. -->
 <a class="ticker" href="/deals" aria-label="See this month's special deals">
   <span class="ticker-track">
-    <span>Click here for special deals from local businesses</span>
-    <span class="dup" aria-hidden="true">Click here for special deals from local businesses</span>
+    <span class="grp">
+      <span class="item">Click here for special deals from local businesses</span>
+      <span class="item">Click here for special deals from local businesses</span>
+      <span class="item">Click here for special deals from local businesses</span>
+      <span class="item">Click here for special deals from local businesses</span>
+      <span class="item">Click here for special deals from local businesses</span>
+      <span class="item">Click here for special deals from local businesses</span>
+    </span>
+    <span class="grp" aria-hidden="true">
+      <span class="item">Click here for special deals from local businesses</span>
+      <span class="item">Click here for special deals from local businesses</span>
+      <span class="item">Click here for special deals from local businesses</span>
+      <span class="item">Click here for special deals from local businesses</span>
+      <span class="item">Click here for special deals from local businesses</span>
+      <span class="item">Click here for special deals from local businesses</span>
+    </span>
   </span>
 </a>
 
