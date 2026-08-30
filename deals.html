@@ -95,6 +95,13 @@ a.deal:focus-visible{outline:3px solid var(--flag);outline-offset:3px}
 }
 .deal .biz{font-weight:800;color:var(--river-deep);font-size:1rem;margin:0 0 8px}
 .deal .details{font-size:.93rem;color:var(--ink-soft);margin:0 0 14px;flex:1}
+.deal .code{
+  align-self:flex-start;display:inline-flex;align-items:baseline;gap:8px;
+  border:2px dashed var(--flag);border-radius:3px;padding:8px 12px;margin:0 0 14px;
+  background:#fff;
+}
+.deal .code .cl{font-size:.62rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft)}
+.deal .code .cv{font-family:var(--f-display);text-transform:uppercase;font-size:1.05rem;color:var(--flag-deep);letter-spacing:.02em}
 .deal .ends{
   font-size:.72rem;font-weight:800;letter-spacing:.11em;text-transform:uppercase;
   color:var(--flag);border-top:1px dashed var(--line-strong);padding-top:11px;
@@ -176,28 +183,57 @@ a.deal:focus-visible{outline:3px solid var(--flag);outline-offset:3px}
 /* =================================================================
    EDIT YOUR DEALS HERE
    -----------------------------------------------------------------
-   offer    : the headline. Keep it SHORT and punchy. This is the hook.
+   offer    : the headline. SHORT and punchy. This is the hook.
    business : who's running it
    category : small tag above the offer
    details  : the fine print / what it covers
-   ends     : "YYYY-MM-DD"  the deal auto-disappears after this date
-   link     : where it sends them (use a Bitly link to count clicks)
-   image    : optional. "/deals/name.png" at 800x400. Leave "" to skip.
-
-   EXAMPLE:
-   {
-     offer:    "$50 off any full roof inspection",
-     business: "Andrew's Roofing",
-     category: "Roofing",
-     details:  "New customers only. Mention The Kearney Insider when you call.",
-     ends:     "2026-09-30",
-     link:     "https://bit.ly/andrew-roofing",
-     image:    ""
-   },
+   code     : optional promo code, shown in a dashed box. "" to skip.
+   ends     : "YYYY-MM-DD"  the day this deal drops off the page by
+              itself. SET THIS TO MATCH THE END DATE ON THEIR AD SPOT
+              in index.html, so the deal and the ad expire together and
+              you never promote a business that stopped advertising.
+   showEnds : keep this FALSE. The deal still expires on the date above,
+              but visitors never see a date on the card. Only set it to
+              true if you want a card to visibly say "Ends September 25"
+              to create urgency on a genuinely limited-time offer.
+   link     : where it sends them
+   image    : optional. "/deals/name.png" at 800x400. "" to skip.
    ================================================================= */
 
 const DEALS = [
-  // Add deals here. Page shows a friendly empty state when this is empty.
+  {
+    offer:    "30% off a private training session",
+    business: "Kearney Dog Bar Training",
+    category: "Dog Training",
+    details:  "Expert-led private training and behavior coaching. Positive reinforcement, real-world results.",
+    code:     "FLYERFALL",
+    ends:     "2026-09-25",
+    showEnds: false,
+    link:     "https://kearneydogbar.com/",
+    image:    ""
+  },
+  {
+    offer:    "10% off, plus a free consultation",
+    business: "Yuletide Lighting Co",
+    category: "Lighting",
+    details:  "Permanent lighting and Christmas lighting. Free consultation and estimating, no obligation.",
+    code:     "KEARNEY INSIDER",
+    ends:     "2026-09-25",
+    showEnds: false,
+    link:     "https://www.facebook.com/p/Yuletide-Lighting-Co-61567820511411/",
+    image:    ""
+  },
+  {
+    offer:    "$1 off all drinks, 4 to 6 every weekday",
+    business: "Whistlin' Wolf Bar & Lounge",
+    category: "Bar & Lounge",
+    details:  "Happy hour Monday through Friday. Moonlight specials too: $3 domestic beers and well drinks, 10pm to 1am Monday through Saturday and all day Sunday. 12 East 21st Street, downtown on the bricks.",
+    code:     "",
+    ends:     "2026-09-25",
+    showEnds: false,
+    link:     "https://www.facebook.com/p/Whistlin-Wolf-Bar-Lounge-61551043024109/",
+    image:    ""
+  }
 ];
 
 /* ===== rendering (no need to touch below) ===== */
@@ -243,7 +279,8 @@ if (!live.length){
         '<p class="offer">'+ esc(d.offer) +'</p>' +
         '<p class="biz">'+ esc(d.business) +'</p>' +
         (d.details ? '<p class="details">'+ esc(d.details) +'</p>' : '<p class="details"></p>') +
-        (d.ends ? '<span class="ends">Ends '+ esc(prettyDate(d.ends)) +'</span>' : '') +
+        (d.code ? '<span class="code"><span class="cl">Code</span><span class="cv">'+ esc(d.code) +'</span></span>' : '') +
+        (d.ends && d.showEnds !== false ? '<span class="ends">Ends '+ esc(prettyDate(d.ends)) +'</span>' : '') +
         '<span class="go">See the deal</span>' +
       '</div>';
 
