@@ -293,22 +293,45 @@ a.tile:focus-visible{outline:3px solid var(--wheat);outline-offset:3px}
 /* available / empty spot */
 .tile.open{
   background:
-    repeating-linear-gradient(135deg, rgba(14,58,70,.03) 0 12px, transparent 12px 24px),
+    repeating-linear-gradient(135deg, rgba(14,58,70,.045) 0 12px, transparent 12px 24px),
     var(--card);
-  border:1px dashed var(--line-strong);
+  border:2px dashed var(--line-strong);
   align-items:center;justify-content:center;text-align:center;padding:18px;
   box-shadow:none;
 }
-.tile.open .open-inner{display:flex;flex-direction:column;align-items:center;gap:6px}
-.tile.open .price{
-  font-family:var(--f-display);color:var(--river);font-size:clamp(1.3rem,3vw,2rem);
-  line-height:1;
+.tile.open .open-inner{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:12px;text-align:center;
 }
-.tile.open .size{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
-.tile.open .avail{font-size:.82rem;font-weight:700;color:var(--river)}
-.tile.open .avail::after{content:" →";color:var(--wheat)}
-.tile.open.spotlight .open-inner,
-.tile.open.promo .open-inner{flex-direction:row;gap:16px;flex-wrap:wrap;justify-content:center}
+/* big price, set in the display face */
+.tile.open .price{
+  font-family:var(--f-display);color:var(--river-deep);
+  font-size:clamp(2rem,4.6vw,3.6rem);line-height:.92;letter-spacing:.01em;
+}
+.tile.open .size{
+  font-size:.86rem;font-weight:800;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--river);
+}
+/* the call to action reads as a real button */
+.tile.open .avail{
+  background:var(--wheat);color:var(--river-ink);
+  font-size:1rem;font-weight:800;letter-spacing:.01em;
+  padding:12px 22px;border-radius:2px;line-height:1;white-space:nowrap;
+  box-shadow:0 2px 0 rgba(7,32,39,.18);
+}
+.tile.open .avail::after{content:" →";color:var(--river-ink)}
+a.tile.open:hover{border-color:var(--wheat);background:var(--card)}
+a.tile.open:hover .avail{background:var(--wheat-soft)}
+
+/* scale per tier so small logo tiles don't overflow */
+.tile.open.spotlight .price{font-size:clamp(2.6rem,5.2vw,4.4rem)}
+.tile.open.spotlight .size{font-size:.95rem}
+.tile.open.spotlight .avail{font-size:1.1rem;padding:14px 26px}
+
+.tile.open.logo .open-inner{gap:9px}
+.tile.open.logo .price{font-size:clamp(1.7rem,3.4vw,2.4rem)}
+.tile.open.logo .size{font-size:.7rem;letter-spacing:.12em}
+.tile.open.logo .avail{font-size:.82rem;padding:9px 14px}
 
 /* =============================================================
    TIER STRIP (explains the board / pricing)
@@ -370,21 +393,25 @@ a.tile:focus-visible{outline:3px solid var(--wheat);outline-offset:3px}
   .tier-cards{grid-template-columns:1fr}
   .section-head .note{text-align:left}
 
-  /* open placeholders: stack their text so it fits a narrow tile */
+  /* open placeholders keep the big treatment, just trimmed to fit */
   .tile.open{padding:12px}
-  .tile.open.spotlight .open-inner,
-  .tile.open.promo .open-inner{flex-direction:row}
-  .tile.open .size{font-size:.66rem;letter-spacing:.08em}
-  .tile.open .avail{font-size:.76rem}
+  .tile.open .open-inner{gap:10px}
+  .tile.open .size{font-size:.74rem;letter-spacing:.12em}
+  .tile.open .avail{font-size:.9rem;padding:11px 18px}
+  .tile.open.spotlight .price{font-size:2.6rem}
+  .tile.open.spotlight .size{font-size:.82rem}
+  .tile.open.spotlight .avail{font-size:.95rem;padding:12px 20px}
 }
 @media (max-width:520px){
   .postmark{width:84px;height:84px}
   .masthead .wrap{padding-bottom:28px}
   .grid{gap:12px}
-  .tile.open .price{font-size:1.25rem}
-  .tile.open .size{font-size:.6rem}
-  .tile.open .avail{font-size:.7rem}
   .tile .tag{font-size:.55rem;padding:4px 6px;top:7px;left:7px}
+  /* logo tiles are half-width on a phone, so scale their contents down */
+  .tile.open.logo .open-inner{gap:7px}
+  .tile.open.logo .price{font-size:1.6rem}
+  .tile.open.logo .size{font-size:.58rem;letter-spacing:.08em}
+  .tile.open.logo .avail{font-size:.7rem;padding:7px 10px}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -764,7 +791,7 @@ tiles.forEach(t=>{
       '<span class="open-inner">' +
         '<span class="price">'+ PRICE[t.tier] +'<span style="font-size:.5em;font-weight:600">/mo</span></span>' +
         '<span class="size">'+ t.tier +' · '+ SIZE[t.tier] +'</span>' +
-        '<span class="avail">Available — claim it</span>' +
+        '<span class="avail">'+ (t.tier === "logo" ? "Claim it" : "Claim this spot") +'</span>' +
       '</span>';
   }
 
