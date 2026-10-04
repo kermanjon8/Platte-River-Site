@@ -138,9 +138,6 @@ input[type=file]:focus{outline:3px solid var(--wheat)}
 .submit:focus-visible{outline:3px solid var(--river);outline-offset:3px}
 .after-submit{font-size:.86rem;color:var(--ink-soft);margin-top:12px}
 
-/* honeypot */
-.hp{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
-
 /* ---------- footer ---------- */
 .foot{background:var(--river-ink);color:rgba(244,241,233,.72);padding:30px 0;font-size:.88rem}
 .foot a{color:var(--wheat-soft);text-decoration:none;font-weight:600}
@@ -211,14 +208,10 @@ src="https://www.facebook.com/tr?id=1459053552757348&ev=PageView&noscript=1"
     <form name="claim-a-spot"
           method="POST"
           data-netlify="true"
-          data-netlify-honeypot="bot-field"
           enctype="multipart/form-data"
           action="/thanks">
 
       <input type="hidden" name="form-name" value="claim-a-spot">
-      <p class="hp">
-        <label>Leave this blank: <input name="bot-field"></label>
-      </p>
 
       <!-- ============ ABOUT THE BUSINESS ============ -->
       <fieldset>
@@ -381,7 +374,7 @@ src="https://www.facebook.com/tr?id=1459053552757348&ev=PageView&noscript=1"
 
 <footer class="foot">
   <div class="wrap">
-    Questions? <a href="mailto:PlatteRiverMarketing@outlook.com">PlatteRiverMarketing@outlook.com</a>
+    Questions? <a href="mailto:jonathan@platterivermarketing.com">jonathan@platterivermarketing.com</a>
     &nbsp;·&nbsp; <a href="tel:19083704160">908-370-4160</a>
   </div>
 </footer>
