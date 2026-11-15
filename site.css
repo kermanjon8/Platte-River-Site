@@ -221,6 +221,10 @@
 .pg .cardshot figure{margin:0}
 @media (max-width:700px){ .pg .cardshot{grid-template-columns:1fr} }
 
+.pg .example + .example{margin-top:40px}
+.pg .example h3{font-family:var(--f-display);text-transform:uppercase;font-weight:400;font-size:1.4rem;
+  line-height:1.05;color:var(--river-deep);margin-bottom:14px}
+
 /* ---- kearney insider masthead ---- */
 .pg .insider-mast{background:var(--river);color:var(--paper);padding:48px 0 54px}
 .pg .insider-mast .row{display:flex;align-items:flex-start;justify-content:space-between;gap:24px}

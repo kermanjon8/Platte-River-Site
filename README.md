@@ -23,6 +23,7 @@ Every commit uses Netlify credits, so batch changes into one commit when you can
 | `_redirects` | | Forwards kearneyinsider.com to platterivermarketing.com |
 | `ads/` | | Online Board ad images |
 | `rounds/` | | Photos of each mailed card |
+| `examples/` | | Semi-solo card images shown on the mailers page |
 
 ## Things not to change
 
