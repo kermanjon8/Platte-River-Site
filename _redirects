@@ -1,0 +1,11 @@
+# Forwards the old address to the new one and keeps the page path,
+# so kearneyinsider.com/deals lands on platterivermarketing.com/deals.
+#
+# IMPORTANT: platterivermarketing.com must already be added to this
+# Netlify project (Domain management) before this file is deployed.
+# Keep kearneyinsider.com on the project as a domain alias.
+
+http://kearneyinsider.com/*       https://platterivermarketing.com/:splat  301!
+https://kearneyinsider.com/*      https://platterivermarketing.com/:splat  301!
+http://www.kearneyinsider.com/*   https://platterivermarketing.com/:splat  301!
+https://www.kearneyinsider.com/*  https://platterivermarketing.com/:splat  301!

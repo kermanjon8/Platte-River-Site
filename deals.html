@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Special Deals | The Kearney Insider</title>
+<title>Local Deals | The Online Board</title>
 <meta name="description" content="Current deals and offers from local central Nebraska businesses.">
 
 <!-- ===== favicon ===== -->
@@ -13,26 +13,27 @@
 
 <!-- ===== social share preview (Facebook, iMessage, LinkedIn, etc.) ===== -->
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="The Kearney Insider">
-<meta property="og:title" content="Special Deals | The Kearney Insider">
+<meta property="og:site_name" content="Platte River Marketing">
+<meta property="og:title" content="Local Deals | The Online Board">
 <meta property="og:description" content="Current deals and offers from local central Nebraska businesses. Updated as they come in.">
-<meta property="og:url" content="https://kearneyinsider.com/deals">
-<meta property="og:image" content="https://kearneyinsider.com/og-image.png">
+<meta property="og:url" content="https://platterivermarketing.com/deals">
+<meta property="og:image" content="https://platterivermarketing.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="The Kearney Insider, from Platte River Marketing">
+<meta property="og:image:alt" content="Platte River Marketing, Kearney Nebraska">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Special Deals | The Kearney Insider">
+<meta name="twitter:title" content="Local Deals | The Online Board">
 <meta name="twitter:description" content="Current deals and offers from local central Nebraska businesses. Updated as they come in.">
-<meta name="twitter:image" content="https://kearneyinsider.com/og-image.png">
+<meta name="twitter:image" content="https://platterivermarketing.com/og-image.png">
 <meta name="theme-color" content="#0E3A46">
-<link rel="canonical" href="https://kearneyinsider.com/deals">
+<link rel="canonical" href="https://platterivermarketing.com/deals">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+<link rel="stylesheet" href="/site.css">
 <style>
 :root{
   --river:#0E3A46; --river-deep:#0A2A33; --river-ink:#072027;
@@ -166,14 +167,30 @@ src="https://www.facebook.com/tr?id=1459053552757348&ev=PageView&noscript=1"
 </head>
 <body>
 
-<nav class="nav">
-  <div class="wrap">
-    <a href="/">The Board</a>
-    <a href="/deals" class="on">Deals</a>
-    <a href="/rounds">Past Rounds</a>
-    <a href="/claim" class="sp">Claim a Spot</a>
+<!-- ============ TOP NAVIGATION (same on every page) ============ -->
+<header class="topnav">
+  <div class="tn-wrap">
+    <a class="tn-brand" href="/">Platte River <span>Marketing</span></a>
+    <input type="checkbox" id="tn-toggle" class="tn-toggle" aria-label="Show the menu">
+    <label for="tn-toggle" class="tn-btn">Menu</label>
+    <nav class="tn-links" aria-label="Main">
+      <a href="/kearney-insider">The Kearney Insider</a>
+      <a href="/board" aria-current="page">Online Board</a>
+      <a href="/mailers">Solo Mailers</a>
+      <a href="/websites">Websites</a>
+      <a href="/marketing">Ads and Design</a>
+      <a class="tn-cta" href="/claim">Contact</a>
+    </nav>
   </div>
-</nav>
+</header>
+<div class="subnav">
+  <div class="tn-wrap">
+    <span class="sn-name">The Online Board</span>
+    <a href="/board">The board</a>
+    <a href="/deals" aria-current="page">Deals</a>
+    <a href="/claim?service=board">Claim a spot</a>
+  </div>
+</div>
 
 <header class="top">
   <div class="wrap">
@@ -193,17 +210,48 @@ src="https://www.facebook.com/tr?id=1459053552757348&ev=PageView&noscript=1"
     <h2>Run your deal here. <em>Free with any spot.</em></h2>
     <p>Every business on the board can post an offer to this page at no extra cost.
        It's the page people actually come here for.</p>
-    <a class="btn btn-primary" href="/claim">Get a spot on the board</a>
+    <a class="btn btn-primary" href="/claim?service=board">Get a spot on the board</a>
   </div>
 </section>
 
-<footer class="foot">
-  <div class="wrap">
-    Platte River Marketing &nbsp;·&nbsp;
-    <a href="mailto:jonathan@platterivermarketing.com">jonathan@platterivermarketing.com</a>
-    &nbsp;·&nbsp; <a href="tel:19083704160">908-370-4160</a>
+<!-- ============ FOOTER (same on every page) ============ -->
+<footer class="sitefoot">
+  <div class="sf-wrap">
+    <div class="sf-cols">
+      <div>
+        <div class="sf-mark">Platte River<br><span>Marketing</span></div>
+        <p>Local marketing for central Nebraska businesses, run by Jonathan Kerman in Kearney.</p>
+      </div>
+      <div>
+        <h2>Services</h2>
+        <ul>
+          <li><a href="/kearney-insider">The Kearney Insider (printed mailer)</a></li>
+          <li><a href="/board">The Online Board</a></li>
+          <li><a href="/mailers">Solo and semi-solo mailers</a></li>
+          <li><a href="/websites">Website design</a></li>
+          <li><a href="/marketing">Ads and design</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Reach me</h2>
+        <ul>
+          <li><a href="tel:19083704160">908-370-4160</a> (call or text)</li>
+          <li><a href="mailto:jonathan@platterivermarketing.com">jonathan@platterivermarketing.com</a></li>
+          <li><a href="/claim">Send me a note</a></li>
+          <li>
+            <a class="sf-fb" href="https://www.facebook.com/share/1GYTginALE/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.45 2.91h-2.33V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg>
+              <span>Facebook</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="sf-legal">&copy; <span id="yr"></span> Platte River Marketing, LLC. Kearney, Nebraska.</div>
   </div>
 </footer>
+<script>(function(){var y=document.getElementById("yr");if(y)y.textContent=new Date().getFullYear();})();</script>
+
 
 <script>
 /* =================================================================

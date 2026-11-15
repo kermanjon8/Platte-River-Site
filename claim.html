@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Claim a Spot | The Kearney Insider</title>
-<meta name="description" content="Reserve your spot on the online board. Tell us about your business and upload your ad.">
+<title>Contact | Platte River Marketing</title>
+<meta name="description" content="Tell me what you need: a spot on The Kearney Insider mailer, an Online Board ad, a solo mailer, a website, or ads. Platte River Marketing, Kearney, Nebraska.">
 
 <!-- ===== favicon ===== -->
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -13,26 +13,27 @@
 
 <!-- ===== social share preview (Facebook, iMessage, LinkedIn, etc.) ===== -->
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="The Kearney Insider">
-<meta property="og:title" content="Claim a Spot | The Kearney Insider">
-<meta property="og:description" content="Reserve your spot on the online board. Tell us about your business and upload your ad.">
-<meta property="og:url" content="https://kearneyinsider.com/claim">
-<meta property="og:image" content="https://kearneyinsider.com/og-image.png">
+<meta property="og:site_name" content="Platte River Marketing">
+<meta property="og:title" content="Contact | Platte River Marketing">
+<meta property="og:description" content="Tell me what you need: a spot on The Kearney Insider mailer, an Online Board ad, a solo mailer, a website, or ads. Platte River Marketing, Kearney, Nebraska.">
+<meta property="og:url" content="https://platterivermarketing.com/claim">
+<meta property="og:image" content="https://platterivermarketing.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="The Kearney Insider, from Platte River Marketing">
+<meta property="og:image:alt" content="Platte River Marketing, Kearney Nebraska">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Claim a Spot | The Kearney Insider">
-<meta name="twitter:description" content="Reserve your spot on the online board. Tell us about your business and upload your ad.">
-<meta name="twitter:image" content="https://kearneyinsider.com/og-image.png">
+<meta name="twitter:title" content="Contact | Platte River Marketing">
+<meta name="twitter:description" content="Tell me what you need: a spot on The Kearney Insider mailer, an Online Board ad, a solo mailer, a website, or ads. Platte River Marketing, Kearney, Nebraska.">
+<meta name="twitter:image" content="https://platterivermarketing.com/og-image.png">
 <meta name="theme-color" content="#0E3A46">
-<link rel="canonical" href="https://kearneyinsider.com/claim">
+<link rel="canonical" href="https://platterivermarketing.com/claim">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+<link rel="stylesheet" href="/site.css">
 <style>
 :root{
   --river:#0E3A46; --river-deep:#0A2A33; --river-ink:#072027;
@@ -147,6 +148,14 @@ input[type=file]:focus{outline:3px solid var(--wheat)}
   .choices{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ---------- service picker + board-only block ---------- */
+.pick{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 22px}
+.pick .check{margin-bottom:0;padding:9px 0;border-bottom:1px solid var(--line)}
+.pick .check label small{display:block;font-size:.8rem;color:var(--ink-soft)}
+#board-only[hidden]{display:none}
+.top a.inline{color:var(--wheat-soft)}
+@media (max-width:620px){ .pick{grid-template-columns:1fr} }
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0B7E23MN36"></script>
@@ -177,21 +186,28 @@ src="https://www.facebook.com/tr?id=1459053552757348&ev=PageView&noscript=1"
 </head>
 <body>
 
-<nav class="nav">
-  <div class="wrap">
-    <a href="/">The Board</a>
-    <a href="/deals">Deals</a>
-    <a href="/rounds">Past Rounds</a>
-    <a href="/claim" class="on sp">Claim a Spot</a>
+<!-- ============ TOP NAVIGATION (same on every page) ============ -->
+<header class="topnav">
+  <div class="tn-wrap">
+    <a class="tn-brand" href="/">Platte River <span>Marketing</span></a>
+    <input type="checkbox" id="tn-toggle" class="tn-toggle" aria-label="Show the menu">
+    <label for="tn-toggle" class="tn-btn">Menu</label>
+    <nav class="tn-links" aria-label="Main">
+      <a href="/kearney-insider">The Kearney Insider</a>
+      <a href="/board">Online Board</a>
+      <a href="/mailers">Solo Mailers</a>
+      <a href="/websites">Websites</a>
+      <a href="/marketing">Ads and Design</a>
+      <a class="tn-cta" href="/claim" aria-current="page">Contact</a>
+    </nav>
   </div>
-</nav>
+</header>
 
 <header class="top">
   <div class="wrap">
-    <a class="back" href="/">&larr; Back to the board</a>
-    <h1>Claim <em>your spot.</em></h1>
-    <p>Fill this out and we'll get back to you with availability and payment details.
-       Takes about two minutes. Nothing is charged here.</p>
+    <h1>Tell me <em>what you need.</em></h1>
+    <p>Fill this out and I'll get back to you, usually within a business day.
+       It takes about two minutes. Nothing is charged here.</p>
   </div>
 </header>
 
@@ -200,9 +216,8 @@ src="https://www.facebook.com/tr?id=1459053552757348&ev=PageView&noscript=1"
 
     <!-- =====================================================
          NETLIFY FORM
-         - data-netlify="true"  -> Netlify captures submissions
-         - enctype="multipart/form-data" -> allows the file upload
-         - action="/thanks" -> sends them to thanks.html after
+         The form name must stay "claim-a-spot". Your email
+         notification in Netlify is tied to that name.
          View submissions at: Netlify > your project > Forms
          ===================================================== -->
     <form name="claim-a-spot"
@@ -213,10 +228,43 @@ src="https://www.facebook.com/tr?id=1459053552757348&ev=PageView&noscript=1"
 
       <input type="hidden" name="form-name" value="claim-a-spot">
 
+      <!-- ============ WHAT THEY WANT ============ -->
+      <fieldset>
+        <legend>What are you interested in?</legend>
+        <p class="legend-note">Check everything that applies.</p>
+
+        <div class="pick">
+          <div class="check">
+            <input type="checkbox" id="s-insider" name="Interested in" value="The Kearney Insider (printed mailer)">
+            <label for="s-insider">The Kearney Insider <small>Printed postcard, 3,000 Kearney homes</small></label>
+          </div>
+          <div class="check">
+            <input type="checkbox" id="s-board" name="Interested in" value="Online Board spot">
+            <label for="s-board">An Online Board spot <small>Ad on this website, from $25 a month</small></label>
+          </div>
+          <div class="check">
+            <input type="checkbox" id="s-mailers" name="Interested in" value="Solo or semi-solo mailer">
+            <label for="s-mailers">A solo or semi-solo mailer <small>Your own card, your own audience</small></label>
+          </div>
+          <div class="check">
+            <input type="checkbox" id="s-websites" name="Interested in" value="Website design">
+            <label for="s-websites">A website <small>Designed, built, and put live</small></label>
+          </div>
+          <div class="check">
+            <input type="checkbox" id="s-marketing" name="Interested in" value="Ads management or design work">
+            <label for="s-marketing">Ads or design work <small>Facebook, Google, logos, flyers</small></label>
+          </div>
+          <div class="check">
+            <input type="checkbox" id="s-unsure" name="Interested in" value="Not sure yet">
+            <label for="s-unsure">Not sure yet <small>Tell me the goal and I'll suggest one</small></label>
+          </div>
+        </div>
+      </fieldset>
+
       <!-- ============ ABOUT THE BUSINESS ============ -->
       <fieldset>
         <legend>About your business</legend>
-        <p class="legend-note">The basics, so we know who we're talking to.</p>
+        <p class="legend-note">The basics, so I know who I'm talking to.</p>
 
         <div class="field">
           <label for="business">Business name <span class="req">*</span></label>
@@ -239,7 +287,6 @@ src="https://www.facebook.com/tr?id=1459053552757348&ev=PageView&noscript=1"
             <option>Lexington</option>
             <option>Other / nearby</option>
           </select>
-          <p class="hint">Helps us know where to point the audience.</p>
         </div>
 
         <div class="field">
@@ -252,7 +299,7 @@ src="https://www.facebook.com/tr?id=1459053552757348&ev=PageView&noscript=1"
       <!-- ============ CONTACT ============ -->
       <fieldset>
         <legend>How to reach you</legend>
-        <p class="legend-note">We'll confirm your spot and send payment details here.</p>
+        <p class="legend-note">I'll reply by email, or call or text if you'd rather.</p>
 
         <div class="field">
           <label for="email">Email <span class="req">*</span></label>
@@ -263,131 +310,185 @@ src="https://www.facebook.com/tr?id=1459053552757348&ev=PageView&noscript=1"
           <label for="phone">Phone <span class="req">*</span></label>
           <input type="tel" id="phone" name="Phone" required>
         </div>
-
-        <div class="field">
-          <label for="link">Where should your ad send people? <span class="req">*</span></label>
-          <input type="text" id="link" name="Destination link" required
-                 placeholder="yourbusiness.com or your Facebook page">
-          <p class="hint">This is the link people land on when they click your ad.</p>
-        </div>
       </fieldset>
 
-      <!-- ============ THE SPOT ============ -->
+      <!-- ============ ONLINE BOARD ONLY ============
+           This block only shows when "An Online Board spot" is checked. -->
+      <div id="board-only">
+        <fieldset>
+          <legend>Your Online Board spot</legend>
+          <p class="legend-note">Not sure which size? Pick the closest one and I'll sort it out with you.</p>
+
+          <div class="field">
+            <div class="choices">
+              <label class="choice" for="t-logo">
+                <input type="radio" id="t-logo" name="Spot size" value="Logo Spot - $25/mo">
+                <span class="box">
+                  <span class="nm">Logo</span>
+                  <span class="pr">$25/mo</span>
+                  <span class="dm">400 × 400</span>
+                </span>
+              </label>
+              <label class="choice" for="t-promo">
+                <input type="radio" id="t-promo" name="Spot size" value="Promo Spot - $50/mo">
+                <span class="box">
+                  <span class="nm">Promo</span>
+                  <span class="pr">$50/mo</span>
+                  <span class="dm">800 × 400</span>
+                </span>
+              </label>
+              <label class="choice" for="t-spot">
+                <input type="radio" id="t-spot" name="Spot size" value="Spotlight - $100/mo">
+                <span class="box">
+                  <span class="nm">Spotlight</span>
+                  <span class="pr">$100/mo</span>
+                  <span class="dm">1200 × 500</span>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="length">How long do you want to run?</label>
+            <select id="length" name="Run length">
+              <option>1 month</option>
+              <option>3 months</option>
+              <option>6 months</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="link">Where should your ad send people?</label>
+            <input type="text" id="link" name="Destination link"
+                   placeholder="yourbusiness.com or your Facebook page">
+            <p class="hint">This is the page people land on when they click your ad.</p>
+          </div>
+
+          <div class="field">
+            <label>What are you running?</label>
+            <div class="check">
+              <input type="checkbox" id="a1" name="Ad plan" value="I have my own ad ready">
+              <label for="a1">I have my own ad ready to go</label>
+            </div>
+            <div class="check">
+              <input type="checkbox" id="a2" name="Ad plan" value="I want to run a promotion">
+              <label for="a2">I want to run a promotion or special offer</label>
+            </div>
+            <div class="check">
+              <input type="checkbox" id="a3" name="Ad plan" value="I need help designing it">
+              <label for="a3">I need help designing it</label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="promo">What's the offer?</label>
+            <textarea id="promo" name="Promotion details"
+                      placeholder="10% off first service, free estimates this month, buy one get one, etc."></textarea>
+            <p class="hint">Skip this if you're just running your logo.</p>
+          </div>
+        </fieldset>
+      </div>
+
+      <!-- ============ DETAILS ============ -->
       <fieldset>
-        <legend>Pick your spot</legend>
-        <p class="legend-note">Not sure? Pick the closest one. We'll sort it out on the call.</p>
+        <legend>The details</legend>
+        <p class="legend-note">A sentence or two is plenty.</p>
 
         <div class="field">
-          <div class="choices">
-            <label class="choice" for="t-logo">
-              <input type="radio" id="t-logo" name="Spot size" value="Logo Spot - $25/mo" required>
-              <span class="box">
-                <span class="nm">Logo</span>
-                <span class="pr">$25/mo</span>
-                <span class="dm">400 × 400</span>
-              </span>
-            </label>
-            <label class="choice" for="t-promo">
-              <input type="radio" id="t-promo" name="Spot size" value="Promo Spot - $50/mo">
-              <span class="box">
-                <span class="nm">Promo</span>
-                <span class="pr">$50/mo</span>
-                <span class="dm">800 × 400</span>
-              </span>
-            </label>
-            <label class="choice" for="t-spot">
-              <input type="radio" id="t-spot" name="Spot size" value="Spotlight - $100/mo">
-              <span class="box">
-                <span class="nm">Spotlight</span>
-                <span class="pr">$100/mo</span>
-                <span class="dm">1200 × 500</span>
-              </span>
-            </label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="length">How long do you want to run?</label>
-          <select id="length" name="Run length">
-            <option>1 month</option>
-            <option>3 months</option>
-            <option>6 months</option>
-            <option>Not sure yet</option>
-          </select>
-        </div>
-      </fieldset>
-
-      <!-- ============ THE AD ============ -->
-      <fieldset>
-        <legend>Your ad</legend>
-        <p class="legend-note">Running an actual promotion gets far more clicks than a logo alone.</p>
-
-        <div class="field">
-          <label>What are you running?</label>
-          <div class="check">
-            <input type="checkbox" id="a1" name="Ad plan" value="I have my own ad ready">
-            <label for="a1">I have my own ad ready to go</label>
-          </div>
-          <div class="check">
-            <input type="checkbox" id="a2" name="Ad plan" value="I want to run a promotion">
-            <label for="a2">I want to run a promotion or special offer</label>
-          </div>
-          <div class="check">
-            <input type="checkbox" id="a3" name="Ad plan" value="I need help designing it">
-            <label for="a3">I need help designing it</label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="promo">What's the offer?</label>
-          <textarea id="promo" name="Promotion details"
-                    placeholder="10% off first service, free estimates in October, buy one get one, etc."></textarea>
-          <p class="hint">Skip this if you're just running your logo.</p>
-        </div>
-
-        <div class="field">
-          <label for="upload">Upload your ad or logo</label>
-          <input type="file" id="upload" name="Ad file" accept="image/*,.pdf">
-          <p class="hint">JPG, PNG, or PDF. Don't worry about exact sizing yet, we'll handle that.</p>
-        </div>
-
-        <div class="field">
-          <label for="notes">Anything else we should know?</label>
+          <label for="notes">What are you trying to do?</label>
           <textarea id="notes" name="Notes"
-                    placeholder="Timing, questions, competitors you'd rather not sit next to, whatever."></textarea>
+                    placeholder="What you want to promote, timing, budget if you have one, questions, whatever helps."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="upload">Upload a logo, an ad, or anything helpful</label>
+          <input type="file" id="upload" name="Ad file" accept="image/*,.pdf">
+          <p class="hint">Optional. JPG, PNG, or PDF.</p>
         </div>
       </fieldset>
 
       <div class="terms-box">
-        <strong>What happens next:</strong> we'll reach out to confirm availability and go over
-        pricing. Spots are paid before they go live, and every ad is reviewed before it's posted.
-        We reserve the right to reject or remove any ad at our discretion. All spots are prepaid
-        and are non-refundable once your ad is live.
+        <strong>What happens next:</strong> I'll reach out to talk through what you need and
+        what it costs. No payment is taken on this page. For Online Board spots: spots are
+        paid before they go live, every ad is reviewed before it's posted, I reserve the right
+        to reject or remove any ad, and spots are non-refundable once your ad is live.
       </div>
 
       <button type="submit" class="submit">Send my request</button>
-      <p class="after-submit">No payment is taken on this page.</p>
+      <p class="after-submit">Or call or text <a href="tel:19083704160">908-370-4160</a>.</p>
 
     </form>
   </div>
 </main>
 
-<footer class="foot">
-  <div class="wrap">
-    Questions? <a href="mailto:jonathan@platterivermarketing.com">jonathan@platterivermarketing.com</a>
-    &nbsp;·&nbsp; <a href="tel:19083704160">908-370-4160</a>
+<!-- ============ FOOTER (same on every page) ============ -->
+<footer class="sitefoot">
+  <div class="sf-wrap">
+    <div class="sf-cols">
+      <div>
+        <div class="sf-mark">Platte River<br><span>Marketing</span></div>
+        <p>Local marketing for central Nebraska businesses, run by Jonathan Kerman in Kearney.</p>
+      </div>
+      <div>
+        <h2>Services</h2>
+        <ul>
+          <li><a href="/kearney-insider">The Kearney Insider (printed mailer)</a></li>
+          <li><a href="/board">The Online Board</a></li>
+          <li><a href="/mailers">Solo and semi-solo mailers</a></li>
+          <li><a href="/websites">Website design</a></li>
+          <li><a href="/marketing">Ads and design</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Reach me</h2>
+        <ul>
+          <li><a href="tel:19083704160">908-370-4160</a> (call or text)</li>
+          <li><a href="mailto:jonathan@platterivermarketing.com">jonathan@platterivermarketing.com</a></li>
+          <li><a href="/claim">Send me a note</a></li>
+          <li>
+            <a class="sf-fb" href="https://www.facebook.com/share/1GYTginALE/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.45 2.91h-2.33V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg>
+              <span>Facebook</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="sf-legal">&copy; <span id="yr"></span> Platte River Marketing, LLC. Kearney, Nebraska.</div>
   </div>
 </footer>
+<script>(function(){var y=document.getElementById("yr");if(y)y.textContent=new Date().getFullYear();})();</script>
 
 <script>
-/* Pre-select the spot size if they came from a specific tile,
-   e.g. /claim?tier=promo  */
-const t = new URLSearchParams(location.search).get("tier");
-if (t) {
-  const map = { logo:"t-logo", promo:"t-promo", spotlight:"t-spot" };
-  const el = document.getElementById(map[t]);
-  if (el) el.checked = true;
-}
+/* -----------------------------------------------------------------
+   Links around the site can pre-check a service, for example
+   /claim?service=websites  or  /claim?service=board&tier=promo
+   ----------------------------------------------------------------- */
+(function(){
+  var q = new URLSearchParams(location.search);
+  var service = q.get("service");
+  var tier = q.get("tier");
+  var boxes = { insider:"s-insider", board:"s-board", mailers:"s-mailers",
+                websites:"s-websites", marketing:"s-marketing", unsure:"s-unsure" };
+  var sizes = { logo:"t-logo", promo:"t-promo", spotlight:"t-spot" };
+
+  if (tier && sizes[tier]) { service = "board"; document.getElementById(sizes[tier]).checked = true; }
+  if (service && boxes[service]) document.getElementById(boxes[service]).checked = true;
+
+  /* the Online Board questions only show when that box is checked */
+  var board = document.getElementById("s-board");
+  var block = document.getElementById("board-only");
+  var first = document.getElementById("t-logo");
+  function sync(){
+    block.hidden = !board.checked;
+    first.required = board.checked;   /* a size is only required for board requests */
+    /* hidden board questions are switched off so they don't show up in the email */
+    block.querySelectorAll("input, select, textarea").forEach(function(el){ el.disabled = !board.checked; });
+  }
+  board.addEventListener("change", sync);
+  sync();
+})();
 </script>
 
 </body>
